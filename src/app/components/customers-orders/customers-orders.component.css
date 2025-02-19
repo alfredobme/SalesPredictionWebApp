@@ -1,0 +1,20 @@
+.dialog-header {
+    background-color: rgb(160, 11, 11) ;
+    color: white;
+    font-size: 18px;
+    padding-left: 10px;
+  }
+
+  .dialog-button {
+    color: red;
+    font-weight: bold;
+    size: 12px;
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    padding: 16px;
+  }
+  

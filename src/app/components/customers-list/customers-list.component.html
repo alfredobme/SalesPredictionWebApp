@@ -1,0 +1,49 @@
+<div class="customers-container">
+    <mat-card>
+      <div class="header-container">
+        <mat-card-title>Customers</mat-card-title>
+    
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Customer Name</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Search customer">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+  
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="customerId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Id</th>
+          <td mat-cell *matCellDef="let customer"> {{ customer.customerId }} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="customerName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
+          <td mat-cell *matCellDef="let customer"> {{ customer.customerName }} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="lastOrderDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Order Date </th>
+          <td mat-cell *matCellDef="let customer"> {{ customer.lastOrderDate | date:'yyyy-MM-dd HH:mm:ss.SSS' }} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="nextOrderDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Next Predicted Order </th>
+          <td mat-cell *matCellDef="let customer"> {{ customer.nextPredictedOrder | date:'yyyy-MM-dd HH:mm:ss.SSS' }} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let customer">
+            <button mat-button style="color: red" (click)="viewOrders(customer)">VIEW ORDERS</button>
+            <button mat-button style="color: green" (click)="newOrder(customer)">NEW ORDER</button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 30]"></mat-paginator>
+    </mat-card>
+  </div>
+  
